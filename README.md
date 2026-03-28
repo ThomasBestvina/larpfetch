@@ -15,3 +15,5 @@ sudo cmake --install .
 ```
 ## usage
 run `larpfetch` in your terminal.
+
+![larpfetch]([https://example.com/image.png](https://github.com/ThomasBestvina/larpfetch/blob/main/image.png))
