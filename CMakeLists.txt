@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.12.0) # target_link_libraries with OBJECT libs & project homepage url
 
-project(fastfetch
+project(larpfetch
     VERSION 2.61.0
     LANGUAGES C
     DESCRIPTION "Fast neofetch-like system information tool"
@@ -1913,33 +1913,33 @@ target_compile_definitions(libfastfetch PRIVATE FF_PACKAGES_DISABLE_LIST=${PACKA
 # Executable targets #
 ######################
 
-add_executable(fastfetch
+add_executable(larpfetch
     src/fastfetch.c
 )
-target_compile_definitions(fastfetch
-    PRIVATE FASTFETCH_TARGET_BINARY_NAME=fastfetch
+target_compile_definitions(larpfetch
+    PRIVATE FASTFETCH_TARGET_BINARY_NAME=larpfetch
 )
-target_link_libraries(fastfetch
+target_link_libraries(larpfetch
     PRIVATE libfastfetch
 )
 
 # Prevent fastfetch from linking to libstdc++
 set(CMAKE_CXX_IMPLICIT_LINK_LIBRARIES "")
 set(CMAKE_CXX_IMPLICIT_LINK_DIRECTORIES "")
-set_target_properties(fastfetch PROPERTIES LINKER_LANGUAGE C)
+set_target_properties(larpfetch PROPERTIES LINKER_LANGUAGE C)
 
 if(WIN32)
-    target_sources(fastfetch
+    target_sources(larpfetch
         PRIVATE src/common/windows/version.rc
     )
 elseif(APPLE)
-    target_link_options(fastfetch
+    target_link_options(larpfetch
         PRIVATE LINKER:-sectcreate,__TEXT,__info_plist,Info.plist
     )
 endif()
 
 if(BINARY_LINK_TYPE STREQUAL "static")
-    target_link_options(fastfetch PRIVATE "-static")
+    target_link_options(larpfetch PRIVATE "-static")
 endif()
 
 # Apply all above parameters to flashfetch if it is built
@@ -1976,38 +1976,38 @@ endif()
 ###################
 
 if (BUILD_TESTS)
-    add_executable(fastfetch-test-strbuf
+    add_executable(larpfetch-test-strbuf
         tests/strbuf.c
     )
-    target_link_libraries(fastfetch-test-strbuf
+    target_link_libraries(larpfetch-test-strbuf
         PRIVATE libfastfetch
     )
 
-    add_executable(fastfetch-test-list
+    add_executable(larpfetch-test-list
         tests/list.c
     )
-    target_link_libraries(fastfetch-test-list
+    target_link_libraries(larpfetch-test-list
         PRIVATE libfastfetch
     )
 
-    add_executable(fastfetch-test-format
+    add_executable(larpfetch-test-format
         tests/format.c
     )
-    target_link_libraries(fastfetch-test-format
+    target_link_libraries(larpfetch-test-format
         PRIVATE libfastfetch
     )
 
-    add_executable(fastfetch-test-color
+    add_executable(larpfetch-test-color
         tests/color.c
     )
-    target_link_libraries(fastfetch-test-color
+    target_link_libraries(larpfetch-test-color
         PRIVATE libfastfetch
     )
 
-    add_executable(fastfetch-test-duration
+    add_executable(larpfetch-test-duration
         tests/duration.c
     )
-    target_link_libraries(fastfetch-test-duration
+    target_link_libraries(larpfetch-test-duration
         PRIVATE libfastfetch
     )
 
@@ -2026,7 +2026,7 @@ endif()
 include(GNUInstallDirs)
 
 install(
-    TARGETS fastfetch
+    TARGETS larpfetch
     DESTINATION "${CMAKE_INSTALL_BINDIR}"
 )
 

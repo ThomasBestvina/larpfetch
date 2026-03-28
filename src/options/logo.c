@@ -5,7 +5,8 @@
 
 void ffOptionsInitLogo(FFOptionsLogo* options)
 {
-    ffStrbufInit(&options->source);
+  ffStrbufInit(&options->source);
+  ffStrbufSetS(&options->source, "arch");
     options->type = FF_LOGO_TYPE_AUTO;
     for(uint8_t i = 0; i < (uint8_t) FASTFETCH_LOGO_MAX_COLORS; ++i)
         ffStrbufInit(&options->colors[i]);

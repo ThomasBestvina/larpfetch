@@ -1,4 +1,5 @@
 #include "os.h"
+#include "common/FFstrbuf.h"
 
 void ffDetectOSImpl(FFOSResult* os);
 
@@ -18,6 +19,12 @@ const FFOSResult* ffDetectOS(void)
         ffStrbufInit(&result.variant);
         ffStrbufInit(&result.variantID);
         ffDetectOSImpl(&result);
+
+        ffStrbufSetS(&result.name, "Arch Linux");
+        ffStrbufSetS(&result.prettyName, "Arch Linux");
+        ffStrbufSetS(&result.id, "arch");
+        ffStrbufSetS(&result.id, "arch");
+
     }
     return &result;
 }
